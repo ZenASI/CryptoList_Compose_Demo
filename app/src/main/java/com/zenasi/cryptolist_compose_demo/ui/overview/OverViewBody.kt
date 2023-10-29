@@ -3,16 +3,14 @@ package com.zenasi.cryptolist_compose_demo.ui.overview
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.zenasi.cryptolist_compose_demo.activity.MainActivityViewModel
+import com.zenasi.cryptolist_compose_demo.activity.main.MainActivityViewModel
 import com.zenasi.cryptolist_compose_demo.model.asset.AssetBean
 import com.zenasi.cryptolist_compose_demo.ui.component.item.ItemCrypto
-import kotlin.math.min
 
 
 @Composable

@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.zenasi.cryptolist_compose_demo"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -70,6 +70,7 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
 
     // okhttp
     implementation ("com.squareup.okhttp3:okhttp:4.10.0")

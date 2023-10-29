@@ -1,4 +1,4 @@
-package com.zenasi.cryptolist_compose_demo.activity
+package com.zenasi.cryptolist_compose_demo.activity.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,23 +8,17 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.lifecycle.ViewModelProvider
 import com.zenasi.cryptolist_compose_demo.App
 import com.zenasi.cryptolist_compose_demo.CryptoScreen
 import com.zenasi.cryptolist_compose_demo.ui.component.tab.tab.CustomMenuTable
-import com.zenasi.cryptolist_compose_demo.ui.overview.OverViewBody
 import com.zenasi.cryptolist_compose_demo.ui.theme.CryptoList_Compose_DemoTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -65,12 +59,12 @@ class MainActivity : ComponentActivity() {
                     }) { paddingValues ->
                         Box(modifier = Modifier.padding(paddingValues)) {
                             Crossfade(targetState = currentScreen, label = "") { it ->
-//                                it.body.invoke()
-                                when (it) {
-                                    CryptoScreen.OverView -> OverViewBody()
-                                    CryptoScreen.CollectView -> OverViewBody()
-                                    CryptoScreen.SettingView -> OverViewBody()
-                                }
+                                it.body.invoke()
+//                                when (it) {
+//                                    CryptoScreen.OverView -> OverViewBody()
+//                                    CryptoScreen.CollectView -> OverViewBody()
+//                                    CryptoScreen.SettingView -> OverViewBody()
+//                                }
                             }
                         }
                     }

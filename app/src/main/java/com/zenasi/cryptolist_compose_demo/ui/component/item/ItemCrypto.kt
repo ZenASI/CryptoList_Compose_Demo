@@ -32,6 +32,7 @@ import coil.request.ImageRequest
 import com.zenasi.cryptolist_compose_demo.Def
 import com.zenasi.cryptolist_compose_demo.PriceState
 import com.zenasi.cryptolist_compose_demo.R
+import com.zenasi.cryptolist_compose_demo.activity.info.CryptoInfoActivity
 import com.zenasi.cryptolist_compose_demo.model.AssetEntity
 import com.zenasi.cryptolist_compose_demo.model.asset.AssetBean
 import com.zenasi.cryptolist_compose_demo.model.asset.HistoryBean
@@ -79,9 +80,9 @@ fun ItemCrypto(assetBean: AssetBean?) {
                 .height(50.dp)
                 .fillMaxWidth()
                 .clickable(enabled = true, onClick = {
-//                    val intent = Intent(context, CryptoInfoActivity::class.java)
-//                    intent.putExtra(Def.CryptoId.name, assetBean)
-//                    context.startActivity(intent)
+                    val intent = Intent(context, CryptoInfoActivity::class.java)
+                    intent.putExtra(Def.CryptoId.name, assetBean)
+                    context.startActivity(intent)
                 })
                 .drawBehind {
                     drawRect(color = colorState)
@@ -255,9 +256,9 @@ fun ItemWatch(
                             if (assetList.isNullOrEmpty()) return@TextButton
                             for (item in assetList) {
                                 if (item.id == assetEntity?.id) {
-//                                    val intent = Intent(context, CryptoInfoActivity::class.java)
-//                                    intent.putExtra(Def.CryptoId.name, item)
-//                                    context.startActivity(intent)
+                                    val intent = Intent(context, CryptoInfoActivity::class.java)
+                                    intent.putExtra(Def.CryptoId.name, item)
+                                    context.startActivity(intent)
                                     return@TextButton
                                 }
                             }
