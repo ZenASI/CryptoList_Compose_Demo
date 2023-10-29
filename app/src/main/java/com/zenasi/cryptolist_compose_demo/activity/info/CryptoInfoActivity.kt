@@ -74,9 +74,9 @@ class CryptoInfoActivity : ComponentActivity() {
         viewModel.getChartInfo(assetBean.id, monthList.first())
         setContent {
             CryptoList_Compose_DemoTheme(
-//                darkTheme = viewModel.nightModeLiveData.collectAsState(
-//                    initial = false
-//                ).value
+                darkTheme = viewModel.nightModeLiveData.collectAsState(
+                    initial = false
+                ).value
             ) {
                 val menuState = remember { mutableStateOf(false) }
                 val urlHandler = LocalUriHandler.current
@@ -143,9 +143,9 @@ class CryptoInfoActivity : ComponentActivity() {
                         val coroutineScope = rememberCoroutineScope()
                         var selectMonth by rememberSaveable { mutableStateOf(monthList.first()) }
 
-                        LaunchedEffect(key1 = selectMonth) {
-                            viewModel.getChartInfo(assetBean.id, selectMonth)
-                        }
+//                        LaunchedEffect(key1 = selectMonth) {
+//                            viewModel.getChartInfo(assetBean.id, selectMonth)
+//                        }
 
                         Column(
                             modifier = Modifier.padding(paddingValues),

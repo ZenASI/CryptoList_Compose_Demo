@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenasi.cryptolist_compose_demo.CryptoScreen
 import com.zenasi.cryptolist_compose_demo.PriceState
+import com.zenasi.cryptolist_compose_demo.activity.BaseViewModel
 import com.zenasi.cryptolist_compose_demo.model.AssetEntity
 import com.zenasi.cryptolist_compose_demo.model.asset.AssetBean
 import com.zenasi.cryptolist_compose_demo.model.asset.HistoryBean
@@ -31,7 +32,7 @@ class MainActivityViewModel @Inject constructor(
     private val dao: RoomDAO,
     private val socketUtils: SocketUtils,
     private val dataStoreUtils: DataStoreUtils
-): ViewModel() {
+): BaseViewModel(dataStoreUtils) {
 
     val cryptoList = mutableStateListOf<AssetBean>()
     var watchList: MutableLiveData<List<AssetEntity>> = MutableLiveData(emptyList())

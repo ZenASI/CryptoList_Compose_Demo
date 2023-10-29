@@ -4,10 +4,11 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zenasi.cryptolist_compose_demo.activity.BaseViewModel
 import com.zenasi.cryptolist_compose_demo.model.AssetEntity
 import com.zenasi.cryptolist_compose_demo.model.asset.AssetBean
 import com.zenasi.cryptolist_compose_demo.model.asset.HistoryBean
-import com.zenasi.cryptolist_compose_demo.model.markets.MarketsBean
+import com.zenasi.cryptolist_compose_demo.model.asset.MarketsBean
 import com.zenasi.cryptolist_compose_demo.repository.CryptoRepo
 import com.zenasi.cryptolist_compose_demo.utils.ApiResult
 import com.zenasi.cryptolist_compose_demo.utils.DataStoreUtils
@@ -27,7 +28,7 @@ class CryptoInfoViewModel @Inject constructor(
     private val jsonUtils: JsonUtils,
     private val dao: RoomDAO,
     private val dataStoreUtils: DataStoreUtils
-) : ViewModel() {
+) : BaseViewModel(dataStoreUtils) {
 
     var cryptoHistoryList = mutableStateListOf<HistoryBean>()
     var cryptoMarketList: MutableLiveData<List<MarketsBean>> = MutableLiveData(emptyList())
@@ -69,7 +70,6 @@ class CryptoInfoViewModel @Inject constructor(
                         jsonUtils.moshiFromJson(jsonUtils.moshi2Json(result.data.data))
                     cryptoHistoryList.clear()
                     cryptoHistoryList.addAll(r)
-
                 }
 
                 is ApiResult.OnFail -> {
@@ -93,7 +93,6 @@ class CryptoInfoViewModel @Inject constructor(
                             .filter {
                                 it.volumeUsd24Hr.isNotEmpty()
                             }
-
                 }
 
                 is ApiResult.OnFail -> {

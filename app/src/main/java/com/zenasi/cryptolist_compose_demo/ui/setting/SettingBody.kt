@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -14,6 +15,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zenasi.cryptolist_compose_demo.R
 import com.zenasi.cryptolist_compose_demo.activity.main.MainActivityViewModel
 import com.zenasi.cryptolist_compose_demo.ui.component.item.ItemBilateralText
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -69,9 +71,9 @@ fun SettingBody() {
             ) {
                 Text(text = stringResource(id = R.string.nightMode))
                 Spacer(modifier = Modifier.weight(1f))
-//                Switch(checked = viewModel.nightModeLiveData.collectAsState().value, onCheckedChange = {
-//                    viewModel.setNightModeValue(it)
-//                })
+                Switch(checked = viewModel.nightModeLiveData.collectAsState().value, onCheckedChange = {
+                    viewModel.setNightModeValue(it)
+                })
             }
 
             Row(
@@ -81,11 +83,11 @@ fun SettingBody() {
             ) {
                 Text(text = stringResource(id = R.string.livePriceUpdate))
                 Spacer(modifier = Modifier.weight(1f))
-//                Switch(checked = viewModel.livePriceUpdate.collectAsState().value, onCheckedChange = {
-//                    scope.launch {
-//                        viewModel.livePriceUpdate.emit(it)
-//                    }
-//                })
+                Switch(checked = viewModel.livePriceUpdate.collectAsState().value, onCheckedChange = {
+                    scope.launch {
+                        viewModel.livePriceUpdate.emit(it)
+                    }
+                })
             }
         }
     }
