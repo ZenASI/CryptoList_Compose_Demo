@@ -13,11 +13,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.lifecycle.ViewModelProvider
 import com.zenasi.cryptolist_compose_demo.App
+import com.zenasi.cryptolist_compose_demo.CryptoScreen
+import com.zenasi.cryptolist_compose_demo.ui.component.tab.tab.CustomMenuTable
 import com.zenasi.cryptolist_compose_demo.ui.overview.OverViewBody
 import com.zenasi.cryptolist_compose_demo.ui.theme.CryptoList_Compose_DemoTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,16 +43,35 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val allScreen = CryptoScreen.values().toList()
+            var currentScreen by rememberSaveable { mutableStateOf(CryptoScreen.OverView) }
             CryptoList_Compose_DemoTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                 ) {
                     Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
-
+                        CustomMenuTable(
+                            allScreen,
+                            onTabSelected = { screen ->
+                                currentScreen = screen
+                                viewModel.pageIndex.value = screen
+                                // 暫時先註解
+//                                if (screen == CryptoScreen.OverView)
+//                                    viewModel.getCryptoList()
+                            },
+                            currentScreen
+                        )
                     }) { paddingValues ->
                         Box(modifier = Modifier.padding(paddingValues)) {
-                            OverViewBody()
+                            Crossfade(targetState = currentScreen, label = "") { it ->
+//                                it.body.invoke()
+                                when (it) {
+                                    CryptoScreen.OverView -> OverViewBody()
+                                    CryptoScreen.CollectView -> OverViewBody()
+                                    CryptoScreen.SettingView -> OverViewBody()
+                                }
+                            }
                         }
                     }
                 }

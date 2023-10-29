@@ -1,9 +1,11 @@
 package com.zenasi.cryptolist_compose_demo.activity
 
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zenasi.cryptolist_compose_demo.CryptoScreen
 import com.zenasi.cryptolist_compose_demo.model.AssetEntity
 import com.zenasi.cryptolist_compose_demo.model.asset.AssetBean
 import com.zenasi.cryptolist_compose_demo.model.asset.HistoryBean
@@ -28,6 +30,7 @@ class MainActivityViewModel @Inject constructor(
 ): ViewModel() {
 
     val cryptoList = mutableStateListOf<AssetBean>()
+    val pageIndex = mutableStateOf(CryptoScreen.OverView)
 
     init{
         getCryptoList()
