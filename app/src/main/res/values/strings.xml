@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CryptoList_Compose_Demo</string>
+
+    <string name="more">More</string>
+
+    <string name="device">Device</string>
+    <string name="time">Time</string>
+    <string name="nightMode">NightMode</string>
+    <string name="livePriceUpdate">LivePriceUpdate</string>
 </resources>
