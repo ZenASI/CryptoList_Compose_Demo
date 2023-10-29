@@ -23,9 +23,26 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            keyAlias = "releasekey"
+            keyPassword = "releasekey"
+            storeFile = file("../gradle/release.jks")
+            storePassword = "releasekey"
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("release")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        debug {
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -73,9 +90,9 @@ dependencies {
     implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
 
     // okhttp
-    implementation ("com.squareup.okhttp3:okhttp:4.10.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
-    testImplementation ("com.squareup.okhttp3:mockwebserver:4.10.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    testImplementation ("com.squareup.okhttp3:mockwebserver:4.11.0")
     // retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     // retrofit & moshi gson convert
