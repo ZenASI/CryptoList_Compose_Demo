@@ -140,8 +140,8 @@ class MainActivityViewModel @Inject constructor(
             val startTime = Instant.now().minus(1, ChronoUnit.DAYS).toEpochMilli()
             val endTime = Instant.now().toEpochMilli()
             map["interval"] = range
-            map["start"] = startTime.toString()
-            map["end"] = endTime.toString()
+//            map["start"] = startTime.toString()
+//            map["end"] = endTime.toString()
 
             when (val result = repo.getCryptoHistoryById(id, map)) {
                 is ApiResult.OnSuccess -> {
